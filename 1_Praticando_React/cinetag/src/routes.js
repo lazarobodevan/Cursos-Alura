@@ -3,6 +3,7 @@ import Inicio from "./pages/Inicio"
 import Favoritos from "./pages/Favoritos";
 import Player from "pages/Player";
 import PaginaBase from "pages/PaginaBase";
+import NaoEncontrada from "pages/NaoEncontrada";
 function AppRoutes(){
     return(
         <BrowserRouter>
@@ -12,6 +13,7 @@ function AppRoutes(){
                     <Route index element={<Inicio/>}></Route>
                     <Route path='/favoritos' element={<Favoritos/>}></Route>
                     <Route path='/:id' element={<Player/>}></Route>
+                    <Route path="*" element={<NaoEncontrada/>}></Route>
                 </Route>
             </Routes>
                 

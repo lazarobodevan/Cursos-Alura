@@ -4,17 +4,24 @@ import { useParams } from "react-router-dom";
 import videos from '../../json/db.json'
 import styles from './Player.module.css'
 import NaoEncontrada from "pages/NaoEncontrada";
+import { useEffect, useState } from "react";
 
 export default function Player(){
     const params = useParams();
-    const video = videos.find((video)=>{
-        return video.id === Number(params.id);
-    })
+    const [video, setVideo] = useState();
+
+    useEffect(()=>{
+        fetch(`http://localhost:3004/videos?id=${params.id}`)
+            .then(res => res.json())
+            .then((res) => {
+                setVideo(...res);            
+            }
+        );
+    },[])
 
     if(!video){
         return <NaoEncontrada/>
     }
-
     return(
         <>
             <Banner imagem="home"/>
